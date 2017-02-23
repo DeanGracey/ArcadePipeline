@@ -20,7 +20,7 @@ Once the image has been run once, to run it again don't use the above command, b
 docker start *id of image*
 docker attach *id of image*
 ```
-The head node docker image is built on an Ubuntu  contains installations of:
+The head node docker image is built on an Ubuntu:16.04 image and contains installations of:
 + [Anaconda] (https://www.continuum.io/)(which includes amongst other libraries, python2.7 and Jupyter) 
 + [Casa] (https://casa.nrao.edu/)
 + [Drive-Casa] (https://github.com/timstaley/drive-casa)
