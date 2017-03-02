@@ -38,7 +38,7 @@ The head node docker image is built on an Ubuntu:16.04 image and contains instal
 # Before using casa from jupyter the working directory and Logging files need to be combined.
 
 ```
-base = 'SNR_G55.10s'
+base = 'base_name'
 timestamp = time.strftime("%d%b%Y_%H%M%S", time.localtime())
 logfile = 'casa'+base+'_'+timestamp+'.log' 
 
@@ -46,6 +46,7 @@ logger = logging.getLogger(__name__)
 logging.basicConfig(filename = logfile, level=logging.DEBUG)
 logger.info((time.strftime("%d%b%Y_%H%M%S", time.localtime())) + "Testing this info")
 ```
+For instructions on how to use a logger see the [python documentation](https://docs.python.org/2/library/logging.html#module-logging)
 
 # To use drive-casa within jupyter (this needs to be verified (syntax) once arcade is running again)
 ```
@@ -78,3 +79,19 @@ Imview("Image.png")
 ##Credit
 
 Tim Standley for [Drive-Casa github](https://github.com/timstaley/drive-casa), [research paper](http://ascl.net/1504.006)
+
+## Troubleshooting
+
+Casa complains that libraries are missing:
+  import the missing library that casa says is missing
+  run ldd path/to/casa/release/lib/python2.7/lib-dynload/_hashlib.so
+      if any of the listed libraries say 'not found' next to the library name, install these
+      
+terminal complains that casa is not a recognised command
+  ```
+  EXPORT PATH=$PATH:path/to/casa/release/bin  
+  ```
+  
+Images are not displayed in jupyter
+  Confirm that the png of the image is created in your notebook
+  use imview('image.png') within jupyter to display the image.
