@@ -32,7 +32,35 @@ The head node docker image is built on an Ubuntu:16.04 image and contains instal
 + [Anaconda] (https://www.continuum.io/)(which includes amongst other libraries, python2.7 and Jupyter) 
 + [Casa] (https://casa.nrao.edu/)
 + [Drive-Casa] (https://github.com/timstaley/drive-casa)
-  
+
+##Running an Instance on jupyter
+
+# To use drive-casa within jupyter (this needs to be verified (syntax) once arcade is running again)
+```
+import drivecasa
+```
+To then pass a list of commands into casa use a python list.
+```
+Script = []
+Script.append("[Casa-Instruction]")
+drivecasa.run_script(Script)
+```
+Additinally a text file containing a new casa command on each line can be run using
+```
+drivecasa.run_script_from_file("textfile.txt")
+```
+# Using GUI in jupyter: (this needs to be filled in once arcade is running again)
+
+To use plotms:
+
+To use imview:
+
+To use ...:
+
+How to open a png image in jupyter:
+```
+Imview("Image.png")
+```
 
 ##Credit
 
