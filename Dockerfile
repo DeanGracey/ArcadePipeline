@@ -32,9 +32,9 @@ RUN wget https://repo.continuum.io/archive/Anaconda2-4.3.0-Linux-x86_64.sh && ba
 RUN echo 'export PATH="/root/anaconda/bin:$PATH"' >> /root/.bashrc
 RUN wget http://casa.nrao.edu/download/distro/linux/release/el7/casa-release-4.7.1-el7.tar.gz && tar -xzvf casa-release-4.7.1-el7.tar.gz
 RUN echo 'export PATH="/casa-release-4.7.1-el7/bin:$PATH"' >> /root/.bashrc
-RUN pip install drive-casa
+CMD ["/bin/bash"]
+RUN /root/anaconda/bin/pip install drive-casa
  
 #######Installation end##########
 #EXPOSE 8080
 #CMD ["--port 8080"]
-
