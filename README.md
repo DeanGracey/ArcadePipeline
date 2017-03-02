@@ -35,19 +35,22 @@ The head node docker image is built on an Ubuntu:16.04 image and contains instal
 
 ##Running an Instance on jupyter
 
+# Before using casa from jupyter the working directory and Logging files need to be combined.
+
 # To use drive-casa within jupyter (this needs to be verified (syntax) once arcade is running again)
 ```
 import drivecasa
+casa = drivecasa.Casapy()
 ```
 To then pass a list of commands into casa use a python list.
 ```
 Script = []
 Script.append("[Casa-Instruction]")
-drivecasa.run_script(Script)
+casa.run_script(Script)
 ```
 Additinally a text file containing a new casa command on each line can be run using
 ```
-drivecasa.run_script_from_file("textfile.txt")
+casa.run_script_from_file("textfile.txt")
 ```
 # Using GUI in jupyter: (this needs to be filled in once arcade is running again)
 
