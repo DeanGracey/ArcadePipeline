@@ -10,10 +10,10 @@ apt-get -y install docker-engine
 ```
 For more information and tutorials on using docker, visit [Docker Tutorial](https://docs.docker.com/learn/)
 
-To donwload and run the docker image *casa-project*:
+The Nodes can be built and run from the Dockerfile using the commands
 ```
-docker pull jeremysmith123/casa-project
-docker run -i -t *id of image*
+docker build -t [name_of_images] .
+
 ```
 Once the image has been run once, to run it again don't use the above command, but rather use:
 ```
