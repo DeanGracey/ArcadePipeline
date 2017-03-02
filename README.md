@@ -33,9 +33,12 @@ The head node docker image is built on an Ubuntu:16.04 image and contains instal
 + [Casa] (https://casa.nrao.edu/)
 + [Drive-Casa] (https://github.com/timstaley/drive-casa)
 
-##Running an Instance on jupyter
+## Running an Instance on jupyter
 
-# Before using casa from jupyter the working directory and Logging files need to be combined.
+```
+ docker run -i -t -p 8888:8888 anaconda1.2 /bin/bash -c "/root/anaconda/bin/conda install jupyter -y --quiet && mkdir /opt/notebooks && /root/anaconda/bin/jupyter notebook --notebook-dir=/opt/notebooks --ip='*' --port=8888 --no-browser"
+```
+## Before using casa from jupyter the working directory and Logging files need to be combined.
 
 ```
 base = 'base_name'
