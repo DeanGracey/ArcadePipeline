@@ -35,7 +35,6 @@ RUN echo 'export PATH="/casa-release-4.7.1-el7/bin:$PATH"' >> /root/.bashrc
 RUN mkdir /opt/notebooks
 ADD *.ipynb /opt/notebooks
 ADD *.tar.gz /opt/notebooks
-#RUN tar -xzvf /opt/notebooks/*.tar.gz 
 CMD ["/bin/bash"]
 RUN /root/anaconda/bin/pip install drive-casa
 RUN rm -r Anaconda2-4.3.0-Linux-x86_64.sh
