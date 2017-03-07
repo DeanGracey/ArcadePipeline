@@ -70,6 +70,23 @@ casa.run_script_from_file("textfile.txt")
 ```
 # Using GUI in jupyter: (this needs to be filled in once arcade is running again)
 
+plotcal(showgui=False (Default:True), figfile=<filename>)
+
+plotants(figfile=<filename>)
+https://casa.nrao.edu/docs/taskref/plotants-task.html
+
+plotms(plotfile=<filename>, overwrite=True (Default:False), showgui=False (Default:True)) 
+https://casa.nrao.edu/docs/taskref/plotms-task.html
+
+viewer(outfile=<filename>, gui=False (Default:True))
+https://casa.nrao.edu/docs/taskref/viewer-task.html
+
+imview(out=<filename>)
+https://casa.nrao.edu/docs/taskref/imview-task.html
+
+msview(outfile=<filename>, gui=False (Default:True))
+https://casa.nrao.edu/docs/taskref/msview-task.html
+
 To use plotms:
 
 To use imview:
