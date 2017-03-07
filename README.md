@@ -12,19 +12,19 @@ For more information and tutorials on using docker, visit [Docker Tutorial](http
 
 The Nodes can be built and run from the Dockerfile using the commands. Once an image is run it runs as a container.
 ```
-docker build -t [name_of_image] .
-docker run -i -t [name_of_image]
+docker build -t <name_of_image> .
+docker run -i -t <name_of_image>
 ```
 Once the image has been run once, to run it again don't use the above command, but rather use:
 ```
-docker start *id of image*
-docker attach *id of image*
+docker start <id of container>
+docker attach <id of container>
 ```
 To view all images available use
 ```
 docker images
 ```
-To view all running containers
+To view all containers
 ```
 docker ps -a
 ```
@@ -36,7 +36,7 @@ The head node docker image is built on an Ubuntu:16.04 image and contains instal
 ## Running an Instance on jupyter
 
 ```
- docker run -i -t -p 8888:8888 anaconda1.2 /bin/bash -c "/root/anaconda/bin/conda install jupyter -y --quiet && mkdir /opt/notebooks && /root/anaconda/bin/jupyter notebook --notebook-dir=/opt/notebooks --ip='*' --port=8888 --no-browser"
+ docker run -i -t -p 8888:8888 astropipe /bin/bash -c "/root/anaconda/bin/conda install jupyter -y --quiet && /root/anaconda/bin/jupyter notebook --notebook-dir=/opt/notebooks --ip='*' --port=8888 --no-browser"
 ```
 ## Before using casa from jupyter the working directory and Logging files need to be combined.
 
@@ -99,7 +99,7 @@ msview( ... ,outfile=<filename>, gui=False)
 ```
 Full documentation on [msview](https://casa.nrao.edu/docs/taskref/msview-task.html).
 
-How to open a png image in a jupyter notebook:
+## How to open an image in a jupyter notebook:
 ```
 from IPython.display import Image
 Image(<filename>)
@@ -116,11 +116,11 @@ Casa complains that libraries are missing:
   run ldd path/to/casa/release/lib/python2.7/lib-dynload/_hashlib.so
       if any of the listed libraries say 'not found' next to the library name, install these
       
-terminal complains that casa is not a recognised command
+Terminal complains that casa is not a recognised command
   ```
   EXPORT PATH=$PATH:path/to/casa/release/bin  
   ```
   
 Images are not displayed in jupyter
   Confirm that the png of the image is created in your notebook
-  use imview('image.png') within jupyter to display the image.
+  use Image('image.png') within jupyter to display the image.
