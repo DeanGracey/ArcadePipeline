@@ -41,17 +41,19 @@ The head node docker image is built on an Ubuntu:16.04 image and contains instal
 ## Before using casa from jupyter the working directory and Logging files need to be combined.
 
 ```
+import drivecasa
+import logging
 base = 'base_name'
 timestamp = time.strftime("%d%b%Y_%H%M%S", time.localtime())
 logfile = 'casa'+base+'_'+timestamp+'.log' 
 
 logger = logging.getLogger(__name__)
-logging.basicConfig(filename = logfile, level=logging.DEBUG)
-logger.info((time.strftime("%d%b%Y_%H%M%S", time.localtime())) + "Testing this info")
+logging.basicConfig(filename = logfile, level=logging.DEBUG) #The logging level 
+casa = drivecasa.Casapy(casa_logfile=logfile,working_dir = working_directory)
 ```
 For instructions on how to use a logger see the [python documentation](https://docs.python.org/2/library/logging.html#module-logging)
 
-# To use drive-casa within jupyter (this needs to be verified (syntax) once arcade is running again)
+# To use drive-casa within jupyter without logging 
 ```
 import drivecasa
 casa = drivecasa.Casapy()
