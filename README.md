@@ -68,34 +68,41 @@ Additinally a text file containing a new casa command on each line can be run us
 ```
 casa.run_script_from_file("textfile.txt")
 ```
-# Using GUI in jupyter: (this needs to be filled in once arcade is running again)
+# Running Casa imaging commands in jupyter:
 
-plotcal(showgui=False (Default:True), figfile=<filename>)
+The Casa imaging programs utilize a GUI to edit and save the images. When running Casa through drive-casa in the jupyter notebook additional windows cannot be opened. Therefore, when using the imaging commands, additional arguments, in order to prevent the GUI from opening and to output the image file to a desired location, must be added to the imaging function call.
 
-plotants(figfile=<filename>)
-https://casa.nrao.edu/docs/taskref/plotants-task.html
+Please note that currently plotms() does not work from a Juptyer Notebook as the function requires a DISPLAY variable to be set.
 
-plotms(plotfile=<filename>, overwrite=True (Default:False), showgui=False (Default:True)) 
-https://casa.nrao.edu/docs/taskref/plotms-task.html
-
-viewer(outfile=<filename>, gui=False (Default:True))
-https://casa.nrao.edu/docs/taskref/viewer-task.html
-
-imview(out=<filename>)
-https://casa.nrao.edu/docs/taskref/imview-task.html
-
-msview(outfile=<filename>, gui=False (Default:True))
-https://casa.nrao.edu/docs/taskref/msview-task.html
-
-To use plotms:
-
-To use imview:
-
-To use ...:
-
-How to open a png image in jupyter:
 ```
-Imview("Image.png")
+plotcal( ... , showgui=False , figfile=<filename>)
+```
+Full documentation on [plotcal](https://casa.nrao.edu/docs/taskref/plotcal-task.html).
+```
+plotants( ... , figfile=<filename>)
+```
+Full documentation on [plotants](https://casa.nrao.edu/docs/taskref/plotants-task.html).
+```
+plotms( ... , plotfile=<filename>, overwrite=True, showgui=False ) 
+```
+Full documentation on [plotms](https://casa.nrao.edu/docs/taskref/plotms-task.html).
+```
+viewer( ... , outfile=<filename>, gui=False)
+```
+Full documentation on [viewer](https://casa.nrao.edu/docs/taskref/viewer-task.html).
+```
+imview( ... , out=<filename>)
+```
+Full documentation on [imview](https://casa.nrao.edu/docs/taskref/imview-task.html).
+```
+msview( ... ,outfile=<filename>, gui=False)
+```
+Full documentation on [msview](https://casa.nrao.edu/docs/taskref/msview-task.html).
+
+How to open a png image in a jupyter notebook:
+```
+from IPython.display import Image
+Image(<filename>)
 ```
 
 ##Credit
