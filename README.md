@@ -1,5 +1,5 @@
 # ArcadePipeline
-A project for running CASA commands through the jupyter notebook using drive-casa with support for parallelism on the ARC cluster using Docker containers
+A project for running Casa commands through Jupyter Notebook using Drive-Casa with the intention for future support for parallelism on the ARC cluster using Docker containers
 
 ## Installation
 
@@ -28,7 +28,7 @@ To view all containers
 ```
 docker ps -a
 ```
-In order to install the docker image and create a container that includes Jupyter Notebook, CASA and Drive-Casa, download the files included in the ArcadePipeline github. Place any ipynb files and Radio Astronomy data in tar.gz format that you wish to be copied into the container in the same folder as the Dockerfile. Run the astropipe.sh file via the following command:
+In order to install the docker image and create a container that includes Jupyter Notebook, Casa and Drive-Casa, download the files included in the ArcadePipeline github. Place any ipynb files (or ipynb tutorial files) and Radio Astronomy data in tar.gz format that you wish to be copied into the container in the same folder as the Dockerfile. Run the astropipe.sh file via the following command:
 ```
 bash astropipe.sh
 ```
@@ -41,13 +41,13 @@ The astropipe docker image is built on an Ubuntu:16.04 image and contains instal
 
 ## Setup a Jupyter Notebook instance from the astropipe docker image
 
-To run a Jupyter Notebook through a docker container a container must be created using the following command
+To run a Jupyter Notebook through a docker container a container must be created from a docker image containing Jupyter Notebook using the following command
 ```
  docker run -i -t -p 8888:8888 astropipe /bin/bash -c "/root/anaconda/bin/conda install jupyter -y --quiet && /root/anaconda/bin/jupyter notebook --notebook-dir=/opt/notebooks --ip='*' --port=8888 --no-browser"
 ```
-The container name 'astropipe' can be changed to the name of the docker image if an alternative name was used during setup. The command '-p' creates a port, in this case port:8888 through which to connect to the Jupyter Notebook instance. After running this commant the terminal will provide a URL to connect to the Jupyter Notebook via a browser. To open this docker container again once it has been started and closed use the start/attach commands mentioned above.
+The container name 'astropipe' can be changed to the name of the docker image if an alternative name was used during setup. The command '-p' creates a port, in this case port:8888 through which to connect to the Jupyter Notebook instance. After running this commant the terminal will provide a URL to connect to the Jupyter Notebook via a browser. To open this docker container again once it has been started and closed use the *start/attach* commands mentioned above.
 
-## Before using casa from jupyter the working directory and Logging files need to be combined.
+## Before using CASA from Jupyter the working directory and Logging files need to be combined.
 
 In order to be able to write to the same logger as CASA and drive-casa during your python script the loggers need to be combined. The *working_Directory* variable is set to '/opt/notebooks' so that the logger information is output to a text file that is accessable from the Jupyter Notebook file system.
 
@@ -65,65 +65,66 @@ casa = drivecasa.Casapy(casa_logfile = logfile, working_dir = working_Directory)
 ```
 For instructions on how to use a logger see the [python documentation](https://docs.python.org/2/library/logging.html#module-logging)
 
-# To use drive-casa within jupyter without logging 
+## To use drive-casa within Jupyter without logging 
 ```
 import drivecasa
 casa = drivecasa.Casapy()
 ```
-To then pass a list of commands into casa use a python list.
-```
-Script = []
-Script.append("[Casa-Instruction]")
-casa.run_script(Script)
-```
-Additinally a text file containing a new casa command on each line can be run using
-```
-casa.run_script_from_file("textfile.txt")
-```
-# Running Casa imaging commands in jupyter:
+## Passing commands/scripts to Casa through Drive-Casa 
 
-The Casa imaging programs utilize a GUI to edit and save the images. When running CASA through drive-casa in the Jupyter Notebook additional windows cannot be opened. Therefore, when using the imaging commands, additional arguments, in order to prevent the GUI from opening and to output the image file to a desired location, must be added to the imaging function call.
+To pass a list of commands into casa use a python list.
+```
+script = []
+script.append("[Casa-Instruction]")
+casa.run_script(script)
+```
+Additionally a text file containing a new Casa command on each line can be run using
+```
+casa.run_script_from_file(<name_of_textfile>)
+```
+# Running Casa imaging commands in Jupyter Notebook:
+
+The Casa imaging tasks utilize a GUI to edit and save the images. When running Casa through Drive-Casa in the Jupyter Notebook additional windows cannot be opened. Therefore, when using the imaging commands, additional arguments, in order to prevent the GUI from opening and to output the image file to a desired location, must be added to the imaging function call.
 
 **NOTE** that currently plotms() does not work from a Juptyer Notebook as this function requires a DISPLAY variable to be set and will throw an error even if a dummy DISPLAY variable is set.
 
 ```
 plotcal( ... , showgui=False , figfile=<filename>)
 ```
-Full documentation on [plotcal](https://casa.nrao.edu/docs/taskref/plotcal-task.html).
+See full documentation on [plotcal](https://casa.nrao.edu/docs/taskref/plotcal-task.html).
 ```
 plotants( ... , figfile=<filename>)
 ```
-Full documentation on [plotants](https://casa.nrao.edu/docs/taskref/plotants-task.html).
+See full documentation on [plotants](https://casa.nrao.edu/docs/taskref/plotants-task.html).
 ```
 plotms( ... , plotfile=<filename>, overwrite=True, showgui=False ) 
 ```
-Full documentation on [plotms](https://casa.nrao.edu/docs/taskref/plotms-task.html).
+See full documentation on [plotms](https://casa.nrao.edu/docs/taskref/plotms-task.html).
 ```
 viewer( ... , outfile=<filename>, gui=False)
 ```
-Full documentation on [viewer](https://casa.nrao.edu/docs/taskref/viewer-task.html).
+See full documentation on [viewer](https://casa.nrao.edu/docs/taskref/viewer-task.html).
 ```
 imview( ... , out=<filename>)
 ```
-Full documentation on [imview](https://casa.nrao.edu/docs/taskref/imview-task.html).
+See full documentation on [imview](https://casa.nrao.edu/docs/taskref/imview-task.html).
 ```
 msview( ... ,outfile=<filename>, gui=False)
 ```
-Full documentation on [msview](https://casa.nrao.edu/docs/taskref/msview-task.html).
+See full documentation on [msview](https://casa.nrao.edu/docs/taskref/msview-task.html).
 ```
 plotms( ... , plotfile=<filename>, overwrite=True, showgui=False ) 
 ```
-Full documentation on [plotms](https://casa.nrao.edu/docs/taskref/plotms-task.html).
+See full documentation on [plotms](https://casa.nrao.edu/docs/taskref/plotms-task.html).
 
 
-## How to open an image in a jupyter notebook:
+## How to open an image in a Jupyter Notebook:
 ```
 from IPython.display import Image
 Image(<filename>)
 ```
 
-
-##Credit
+## Credit
 
 Tim Standley for [Drive-Casa github](https://github.com/timstaley/drive-casa), [research paper](http://ascl.net/1504.006)
 
@@ -136,12 +137,12 @@ ldd path/to/casa/release/lib/python2.7/lib-dynload/_hashlib.so
 ```
 If any of the listed libraries say 'not found' next to the library name, install these files using 
 ```
-'apt-get install <libname>'.
+apt-get install <libname>
 ```
 
 **Terminal complains that casa is not a recognised command**
 ```
-EXPORT PATH=$PATH:path/to/casa/release/bin  
+EXPORT PATH=$PATH:path/to/casa-release/bin  
 ```
   
 **Images are not displayed in jupyter**
