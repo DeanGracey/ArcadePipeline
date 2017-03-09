@@ -36,6 +36,15 @@ To view all containers
 ```
 docker ps -a
 ```
+To mount a volume from the host machine into the docker container
+```
+docker run -it -v /path/to/folder/on/host:/path/to/folder/in/container <name_of_image> /bin/bash
+```
+To copy files out of and into the container respectively
+```
+docker cp [options] <container>:/path/to/source /path/to/destination
+docker cp [options] /path/to/source <container_id>:/path/to/destination
+```
 In order to install the docker image and create a container that includes Jupyter Notebook, Casa and Drive-Casa, download the files included in the ArcadePipeline github. Place any ipynb files (or ipynb tutorial files) and Radio Astronomy data in tar.gz format that you wish to be copied into the container in the same folder as the Dockerfile. Run the astropipe.sh file via the following command:
 ```
 bash astropipe.sh
@@ -43,7 +52,7 @@ bash astropipe.sh
 This will automatically create the astropipe docker image and create a container that opens an instance of the Jupyter Notebook with access to any ipynb and data files that were included in the same folder as the dockerfile during installation. Note that any tar.gz files will be automatically extracted during the installation.
 
 The astropipe docker image is built on an Ubuntu:16.04 image and contains installations of:
-+ [Anaconda] (https://www.continuum.io/)(which includes amongst other libraries, python2.7 and Jupyter) 
++ [Anaconda] (https://www.continuum.io/) (which includes amongst other libraries, python2.7 and Jupyter) 
 + [Casa] (https://casa.nrao.edu/)
 + [Drive-Casa] (https://github.com/timstaley/drive-casa)
 
