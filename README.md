@@ -140,7 +140,7 @@ See full documentation on [plotms](https://casa.nrao.edu/docs/taskref/plotms-tas
 from IPython.display import Image
 Image(<filename>)
 ```
-
+See additional documentation on [IPython.Display.Image](https://ipython.org/ipython-doc/3/api/generated/IPython.display.html).
 ## Credit
 
 Tim Standley for [Drive-Casa github](https://github.com/timstaley/drive-casa), [research paper](http://ascl.net/1504.006)
@@ -148,7 +148,7 @@ Tim Standley for [Drive-Casa github](https://github.com/timstaley/drive-casa), [
 ## Troubleshooting
 
 **Casa complains that libraries are missing:**
-Import the missing library that casa says is missing. Check which files are missing by running the following command:
+Import the missing library that casa says is missing. Check which dependencies are missing by running the following command:
 ```
 ldd path/to/casa/release/lib/python2.7/lib-dynload/_hashlib.so
 ```
