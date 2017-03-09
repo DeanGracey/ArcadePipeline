@@ -18,7 +18,7 @@ sudo usermod -aG docker <username>
 ```
 For more information and tutorials on using docker, visit [Docker Tutorial](https://docs.docker.com/learn/)
 
-The Nodes can be built and run from the Dockerfile using the commands. Once an image is run it runs as a container.
+The docker images can be built and run from the Dockerfile using the following command. The Dockerfile must be in your current directory. When you run an image a container using that image is created. Don't forget the '.' at the end of the *build* command - this indicates the Dockerfile is in your current directory.
 ```
 docker build -t <image_name> .
 docker run -i -t <image_name>
