@@ -20,13 +20,13 @@ For more information and tutorials on using docker, visit [Docker Tutorial](http
 
 The Nodes can be built and run from the Dockerfile using the commands. Once an image is run it runs as a container.
 ```
-docker build -t <name_of_image> .
-docker run -i -t <name_of_image>
+docker build -t <image_name> .
+docker run -i -t <image_name>
 ```
 Once the image has been run once, to run it again don't use the above command, but rather use:
 ```
-docker start <id of container>
-docker attach <id of container>
+docker start <container_id>
+docker attach <container_id>
 ```
 To view all images available use
 ```
