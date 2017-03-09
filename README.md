@@ -8,6 +8,14 @@ To install Docker:
 apt-get update
 apt-get -y install docker-engine
 ```
+OR
+```
+curl -fsSL https://get.docker.com/ | sh
+```
+Add yourself to the docker user group:
+```
+sudo usermod -aG docker <username>
+```
 For more information and tutorials on using docker, visit [Docker Tutorial](https://docs.docker.com/learn/)
 
 The Nodes can be built and run from the Dockerfile using the commands. Once an image is run it runs as a container.
