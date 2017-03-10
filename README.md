@@ -1,7 +1,7 @@
 # ArcadePipeline
 A project for running Casa commands through Jupyter Notebook using Drive-Casa with the intention for future support for parallelism on the ARC cluster using Docker containers
 
-## For a guide to prototpying process see "Building a Docker" at the end of the Readme
+**For a guide to prototpying process see "Building a Docker" at the end of the Readme**
 
 ## Installation
 
