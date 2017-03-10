@@ -1,6 +1,8 @@
 # ArcadePipeline
 A project for running Casa commands through Jupyter Notebook using Drive-Casa with the intention for future support for parallelism on the ARC cluster using Docker containers
 
+## For a guide to prototpying process see "Building a Docker" at the end of the Readme
+
 ## Installation
 
 To install Docker:
@@ -165,3 +167,27 @@ EXPORT PATH=$PATH:path/to/casa-release/bin
 **Images are not displayed in jupyter**
 Confirm that the png of the image is created in your notebook
 Use Image(filename='/path/to/images/image.png') within jupyter to display the image.
+
+## Building A Docker 
+From the experience gained in building the Arcade Pipleline, the easiest prototyping process for building a Docker image is described below
+
+After install Docker pull a base operating system to build the Docker on. (Alternativly pull an image that already contains the largest part of your environment eg docker pull python:2.7)
+```
+docker pull ubuntu:16.04
+```
+Find out the image id of the container
+```
+docker images
+```
+Run the image to create a container
+```
+docker run -it <id-of-image>
+```
+Now the terminal is in the container in a bash shell. Start with apt-get update, this will ensure that downloads of software download the latest versions. Treat the containter as if it were your own machine, installing software as usuall. To download software you will need wget so install wget
+```
+apt-get update
+aptget install wget
+```
+Now you can download and install software as you normally would through the terminal. Once all software is intalled and you have verified that it runs correctly, you can use the history command to see all the commands that you typed into the terminal. Copy the commands that worked in setting up your environment and put them in a Dockerfile that follows the same format as the Dockerfile above. Now follow the same process described above to rebuild the image from the Dockerfile to ensure the process worked.
+
+Building the image in this way rather than using a Dockerfile first saves on development time as the build process is interactive rather than running a script and reiteratively correcting errors and rebuilding the image. 
