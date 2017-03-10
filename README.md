@@ -1,7 +1,7 @@
 # ArcadePipeline
 A project for running Casa commands through Jupyter Notebook using Drive-Casa with the intention for future support for parallelism on the ARC cluster using Docker containers
 
-**For a guide to prototpying process see "Building a Docker" at the end of the Readme**
+**For a guide to prototpying a new Docker image see "Building a Docker Image" at the end of this Readme**
 
 ## Installation
 
@@ -168,26 +168,31 @@ EXPORT PATH=$PATH:path/to/casa-release/bin
 Confirm that the png of the image is created in your notebook
 Use Image(filename='/path/to/images/image.png') within jupyter to display the image.
 
-## Building A Docker 
-From the experience gained in building the Arcade Pipleline, the easiest prototyping process for building a Docker image is described below
+## Building A Docker Image
+From the experience gained in building the Arcade Pipleline, the easiest prototyping process for building a new Docker Image is described below.
 
-After install Docker pull a base operating system to build the Docker on. (Alternativly pull an image that already contains the largest part of your environment eg docker pull python:2.7)
+After installing Docker pull a Docker Image of a base operating system to build further applications on top of. (Alternativly pull an image that already contains the largest part of your environment e.g. *docker pull python:2.7*)
 ```
 docker pull ubuntu:16.04
 ```
-Find out the image id of the container
+Find the image id of the container
 ```
 docker images
 ```
 Run the image to create a container
 ```
-docker run -it <id-of-image>
+docker run -it <image_id>
 ```
-Now the terminal is in the container in a bash shell. Start with apt-get update, this will ensure that downloads of software download the latest versions. Treat the containter as if it were your own machine, installing software as usuall. To download software you will need wget so install wget
+Now the terminal is in the container in a bash shell. Start with *apt-get update*, this will update the list of available software/libraries/versions that are available download through *apt-get install*. Treat the containter as if it were your own machine, installing software as usuall. To download software you will need *wget*, so install *wget* as follows
 ```
 apt-get update
-aptget install wget
+apt-get install wget
 ```
-Now you can download and install software as you normally would through the terminal. Once all software is intalled and you have verified that it runs correctly, you can use the history command to see all the commands that you typed into the terminal. Copy the commands that worked in setting up your environment and put them in a Dockerfile that follows the same format as the Dockerfile above. Now follow the same process described above to rebuild the image from the Dockerfile to ensure the process worked.
+Now you can download and install software as you normally would through the terminal. Once all software is intalled and you have verified that it runs correctly, you can use the *history* command to see all the commands that you typed into the terminal. Copy the commands that worked in setting up your environment and put them in a Dockerfile that follows the same format as the Dockerfile included in this GitHub respository. Now follow the same process described above to rebuild the image from the Dockerfile to ensure the process worked. For example:
+```
+FROM python2.7
+RUN apt-get update && apt-get install -y wget
+```
+Note that using *-y* in the run command overrides any necessary user input during installations, that would block the Dockerfile script.  
 
-Building the image in this way rather than using a Dockerfile first saves on development time as the build process is interactive rather than running a script and reiteratively correcting errors and rebuilding the image. 
+Building the image in this way rather than using a Dockerfile first saves on development time as the build process is interactive and missing libraries can more easily be determined, rather than running a script and reiteratively correcting errors and rebuilding the image. 
