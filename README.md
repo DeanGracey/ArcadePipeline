@@ -188,7 +188,7 @@ Now the terminal is in the container in a bash shell. Start with *apt-get update
 apt-get update
 apt-get install wget
 ```
-Now you can download and install software as you normally would through the terminal. Once all software is intalled and you have verified that it runs correctly, you can use the *history* command to see all the commands that you typed into the terminal. Copy the commands that worked in setting up your environment and put them in a Dockerfile that follows the same format as the Dockerfile included in this GitHub respository. Now follow the same process described above to rebuild the image from the Dockerfile to ensure the process worked. For example:
+Now you can download and install software as you normally would through the terminal. Once all software is intalled and you have verified that it runs correctly, you can use the *history* command to see all the commands that you typed into the terminal. Copy the commands that worked in setting up your environment and put them in a Dockerfile that follows the same format as the Dockerfile included in this GitHub repository. Now follow the same process described above to rebuild the image from the Dockerfile to ensure the process worked. For example:
 ```
 FROM python2.7
 RUN apt-get update && apt-get install -y wget
